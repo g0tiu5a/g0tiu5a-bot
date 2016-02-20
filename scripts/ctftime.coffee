@@ -61,14 +61,14 @@ module.exports = (robot) ->
   robot.hear /ctftime ours/, (msg) ->
     OUR_TEAM_ID = 16931  # Team g0tiu5a ID
 
-    url = CTFTIME_API_URL + "/teams/#{OUT_TEAM_ID}/"
+    url = CTFTIME_API_URL + "/teams/#{OUR_TEAM_ID}/"
     http = msg.http url
     http.get() (err, res, body) ->
       if res.statusCode is 404
         msg.send "404: nothing team"
       else
         team = JSON.parse body
-        latest_ratings = team[0][new Date().getFullYear().toString()]
+        latest_ratings = team.rating[0][new Date().getFullYear().toString()]
         robot.emit 'slack.attachment',
         message: msg.message
         content: [
@@ -93,7 +93,6 @@ module.exports = (robot) ->
                 short: true
               }
             ]
-
             color: "#764FA5"
         }
       ]
