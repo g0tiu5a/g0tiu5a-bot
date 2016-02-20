@@ -14,13 +14,45 @@ module.exports = (robot) ->
     start = Math.floor(start / 1000)
     finish = Math.floor(finish / 1000)
     url = CTFTIMES_API_URL + "/events/?limit=#{limit}&start=#{start}&finish=#{finish}"
-    msg.send url
     http = msg.http url
     http.get() (err, res, body) ->
       if res.statusCode is 404
         msg.send "404: nothing event"
       else
         # msg.send body
-        jsons = JSON.parse body
-        envelope = room: "#ctf_playing"
-        robot.emit 'slack.attachment', {text:"<https://github.com/link/to/a/PR|myrepo #42> fix some broken"}
+        events = JSON.parse body
+        for event in events
+          robot.emit 'slack.attachment',
+          message: msg.message
+          content: [
+            {
+              fallback: "#{event.title} - #{event.url}"
+              title: event.title
+              title_url: event.url
+
+              fields: [
+                {
+                  title: "format"
+                  value: event.format
+                  short: true
+                },
+                {
+                  title: "weight"
+                  value: event.weight
+                  short: true
+                },
+                {
+                  title: "start"
+                  value: event.start
+                  short: true
+                },
+                {
+                  title: "finish"
+                  value: event.finish
+                  short: true
+                }
+              ]
+
+              color: "#F35A00"
+            }
+          ]
