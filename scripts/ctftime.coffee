@@ -44,12 +44,12 @@ module.exports = (robot) ->
                 },
                 {
                   title: "start"
-                  value: moment(event.start).tz("Asia/Tokyo").format("YYYY/MM/DD HH:mm:ssZ")
+                  value: moment(event.start).format("YYYY/MM/DD HH:mm:ssZ")
                   short: true
                 },
                 {
                   title: "finish"
-                  value: moment(event.finish).tz("Asia/Tokyo").format("YYYY/MM/DD HH:mm:ssZ")
+                  value: moment(event.finish).format("YYYY/MM/DD HH:mm:ssZ")
                   short: true
                 }
               ]
@@ -59,9 +59,7 @@ module.exports = (robot) ->
           ]
 
   robot.hear /ctftime ours/, (msg) ->
-    OUR_TEAM_ID = process.env.HUBOT_OUR_TEAM_ID
-    if !OUR_TEAM_ID
-      OUR_TEAM_ID = 16931  # Team g0tiu5a ID
+    OUR_TEAM_ID = 16931  # Team g0tiu5a ID
 
     url = CTFTIME_API_URL + "/teams/#{OUT_TEAM_ID}/"
     http = msg.http url
