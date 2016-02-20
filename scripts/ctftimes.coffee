@@ -22,5 +22,5 @@ module.exports = (robot) ->
       else
         # msg.send body
         jsons = JSON.parse body
-
+        envelope = room: "#ctf_playing"
         robot.emit 'slack.attachment', {text:"<https://github.com/link/to/a/PR|myrepo #42> fix some broken"}
