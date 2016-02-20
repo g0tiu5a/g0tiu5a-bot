@@ -4,7 +4,7 @@
   "private": true,
   "author": "Kafu Chino <g0tiu5ahq@gmail.com>",
   "description": "g0tiu5a CTF team bot",
-    "dependencies": {
+  "dependencies": {
     "coffee-script": "*",
     "hubot": "^2.18.0",
     "hubot-diagnostics": "0.0.1",
@@ -18,7 +18,8 @@
     "hubot-rules": "^0.1.1",
     "hubot-scripts": "^2.16.2",
     "hubot-shipit": "^0.2.0",
-    "hubot-slack": "^3.4.2"
+    "hubot-slack": "^3.4.2",
+    "moment": "^2.11.2"
   },
   "engines": {
     "node": "0.10.x"
