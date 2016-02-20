@@ -28,7 +28,7 @@ module.exports = (robot) ->
             {
               fallback: "#{event.title} - #{event.url}"
               title: event.title
-              title_url: event.url
+              title_link: event.url
 
               fields: [
                 {
