@@ -4,6 +4,7 @@
 # Commands:
 # ctftimes event
 CTFTIMES_API_URL = "https://ctftime.org/api/v1"
+moment = require "moment"
 
 module.exports = (robot) ->
   robot.hear /ctftimes event/, (msg) ->
@@ -43,12 +44,12 @@ module.exports = (robot) ->
                 },
                 {
                   title: "start"
-                  value: event.start
+                  value: moment(event.start).format("YYYY/MM/DD HH:mm:ssZ")
                   short: true
                 },
                 {
                   title: "finish"
-                  value: event.finish
+                  value: moment(event.finish).format("YYYY/MM/DD HH:mm:ssZ")
                   short: true
                 }
               ]
