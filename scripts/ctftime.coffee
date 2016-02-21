@@ -20,6 +20,8 @@ module.exports = (robot) ->
     http.get() (err, res, body) ->
       if res.statusCode is 404
         msg.send "404: nothing event"
+      else if JSON.parse body == []
+        msg.send "Nothing event"
       else
         events = JSON.parse body
         for event in events
@@ -78,11 +80,6 @@ module.exports = (robot) ->
 
             fields: [
               {
-                title: "country"
-                value: ":flag-#{team.country}:"
-                short: true
-              },
-              {
                 title: "Latest rating points"
                 value: latest_ratings.rating_points
                 short: true
@@ -91,8 +88,13 @@ module.exports = (robot) ->
                 title: "Latest raring place"
                 value: "#{latest_ratings.rating_place} th"
                 short: true
+              },
+              {
+                title: "country"
+                value: ":flag-#{team.country}:"
+                short: true
               }
             ]
             color: "#764FA5"
-        }
-      ]
+          }
+        ]
