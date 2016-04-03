@@ -1,0 +1,317 @@
+{
+    "crypto":[
+        {
+            "name": "John The Ripper",
+            "url": "http://www.openwall.com/john/",
+            "description": "パスワードクラッカー, 主にOS用",
+            "references": []
+        },
+        {
+            "name": "pkcrack",
+            "url": "https://www.unix-ag.uni-kl.de/~conrad/krypto/pkcrack.html",
+            "description": "既知平文攻撃をZIPファイルに対して行いZIPファイルの解凍を試みるツール",
+            "references": []
+        },
+        {
+            "name": "fcrackzip",
+            "url": "http://oldhome.schmorp.de/marc/fcrackzip.html",
+            "description": "ZIPファイルのパスワードを辞書攻撃,ブルートフォース攻撃で探すツール",
+            "references": []
+        },
+        {
+            "name": "HashPump",
+            "url": "https://github.com/bwall/HashPump",
+            "description": "Length Extension Attackをするツール",
+            "references": [
+                "https://wiki.mma.club.uec.ac.jp/CTF/Toolkit/HashPump",
+                "https://en.wikipedia.org/wiki/Length_extension_attack"
+            ]
+        },
+        {
+            "name": "Sage",
+            "url": "http://www.sagemath.org/",
+            "description": "Pythonの計算ライブラリ",
+            "references": []
+        },
+        {
+            "name": "gmpy2",
+            "url": "https://pypi.python.org/pypi/gmpy2",
+            "description": "Pythonで多倍長整数演算等を行うためのツール. GMPのPythonラッパー",
+            "references": []
+        },
+        {
+            "name": "msieve",
+            "url": "http://sourceforge.net/projects/msieve/",
+            "description": "素因数分解を行うプログラム. 320 bit程度であれば数分で終わるはず.",
+            "references": ["http://inaz2.hatenablog.com/entry/2016/01/09/032521"]
+        },
+        {
+            "name": "pycrypto Python Cryptography ToolKit (pycrypto)",
+            "url": "https://pypi.python.org/pypi/pycrypto",
+            "description": "Pythonの暗号ライブラリ. AES, DES, RSAなんでもござれ",
+            "references": []
+        },
+        {
+            "name": "rsatool",
+            "url": "https://github.com/ius/rsatool",
+            "description": "2つの素数p, qを与えるとPEM, DER形式の秘密鍵を作ってくれる便利ツール",
+            "references": []
+        },
+        {
+            "name": "factordb",
+            "url": "http://factordb.com/",
+            "description": "素数かどうかを判定するWebツール.合成数の場合はもしDB内にあれば素因数分解の結果も得られる便利サイト",
+            "references": []
+        },
+        {
+            "name": "quipquip",
+            "url": "http://quipqiup.com/",
+            "description": "暗号文が英語であればいけるとおもわれ",
+            "references": []
+        }
+    ],
+    "forensics":[
+        {
+            "name": "foremost",
+            "url": "http://foremost.sourceforge.net/",
+            "description": "バイナリファイル内に別のバイナリが見つかればそれを吐いてくれるツール",
+            "references": []
+        },
+        {
+            "name": "binwalk",
+            "url": "http://binwalk.org/",
+            "description": "バイナリファイル内に別のバイナリが見つかればそれを吐いてくれるツール. 種類も大抵特定できる",
+            "references": [
+                "https://github.com/ctfs/write-ups-2015/tree/master/pragyan-ctf-2015/stegano/what_you_see_is_what_you_get"
+            ]
+        },
+        {
+            "name": "Autopsy",
+            "url": "http://www.sleuthkit.org/autopsy/",
+            "description": "フォレンジックスツール.",
+            "references": []
+        },
+        {
+            "name": "Volatility",
+            "url": "https://github.com/volatilityfoundation",
+            "description": "メモリダンプ等を解析するツール. Windows, OSX, Linux等各種OSに対応しているみたい",
+            "references": []
+        }
+    ],
+    "misc": [
+        {
+            "name": "Online Hash Crack",
+            "url": "http://www.onlinehashcrack.com/",
+            "description": "いろんなハッシュを逆算する",
+            "references": []
+        },
+        {
+            "name": "ppencode",
+            "url": "http://namazu.org/~takesako/ppencode/",
+            "description": "PerlコードをPerlの予約語に変換する.意味不明",
+            "references": [
+                "http://shinh.hatenablog.com/entry/2015/05/09/032904"
+            ]
+        },
+        {
+            "name": "strong-qr-decoder",
+            "url": "https://github.com/waidotto/strong-qr-decoder",
+            "description": "QRコードをデコードしてくれる.SECCON問題を解くには必須ツール",
+            "references": []
+        }
+    ],
+    "network":[
+        {
+            "name": "Wireshark",
+            "url": "https://www.wireshark.org/",
+            "description": "ネットワークと言ったらこれでしょ",
+            "references": []
+        },
+        {
+            "name": "Network Miner",
+            "url": "http://www.netresec.com/?page=NetworkMiner",
+            "description": "Windowsのみだけどファイルをダンプする機能が結構強い",
+            "references": []
+        },
+        {
+            "name": "Scapy",
+            "url": "http://www.secdev.org/projects/scapy/",
+            "description": "パケット解析をPythonでするためのライブラリ",
+            "references": []
+        },
+        {
+            "name": "nmap",
+            "url": "https://nmap.org/man/jp/",
+            "description": "ポートスキャン",
+            "references": []
+        }
+    ],
+    "stegano":[
+        {
+            "name": "stegsolve",
+            "url": "http://www.caesum.com/handbook/Stegsolve.jar",
+            "description": "ボタンポチポチ",
+            "references": []
+        },
+        {
+            "name": "pngcheck",
+            "url": "http://www.libpng.org/pub/png/apps/pngcheck.html",
+            "description": "pngcheck",
+            "references": []
+        },
+        {
+            "name": "MP3Stego",
+            "url": "http://www.petitcolas.net/steganography/mp3stego/",
+            "description": "MP3 Stego",
+            "references": []
+        }
+    ],
+    "pwn":[
+        {
+            "name": "pwntools",
+            "url": "http://pwntools.com/",
+            "description": "CTF framework",
+            "references": []
+        },
+        {
+            "name": "rp++",
+            "url": "https://github.com/0vercl0k/rp",
+            "description": "The tool of finding ROP sequences",
+            "references": []
+        },
+        {
+            "name": "ROPgadget",
+            "url": "http://shell-storm.org/project/ROPgadget/",
+            "description": "This tool lets you to search your gadgets on your binaries to facilitate your ROP exploitation",
+            "references": []
+        },
+        {
+            "name": "GDB Peda",
+            "url": "https://github.com/longld/peda",
+            "description": "PEDA - Python Exploit Development Assistance for GDB",
+            "references": []
+        },
+        {
+            "name": "shell-storm.org",
+            "url": "http://shell-storm.org/shellcode/",
+            "description": "Shellcodes database for study cases",
+            "references": []
+        },
+        {
+            "name": "Shellcode Exploit Database",
+            "url": "https://www.exploit-db.com/shellcode/",
+            "description": "Shellcode databases",
+            "references": []
+        }
+    ],
+    "reversing":[
+        {
+            "name": "gdb",
+            "url": "https://www.gnu.org/software/gdb/",
+            "description": "デバッガ.",
+            "references": []
+        },
+        {
+            "name": "objdump",
+            "url": "https://sourceware.org/binutils/docs/binutils/objdump.html",
+            "description": "逆アセンブラ. `-M intel`オプションを推奨する",
+            "references": []
+        },
+        {
+            "name": "ndiasm",
+            "url": "http://www.nasm.us/doc/nasmdoca.html",
+            "description": "シェルコードのようなコードの断片を逆アセンブルするのに向いているツール",
+            "references": [
+                "https://wiki.mma.club.uec.ac.jp/CTF/Toolkit/ndisasm"
+            ]
+        },
+        {
+            "name": "IDA Pro",
+            "url": "有名なツール. 無料版は2つありx86のみだけどそれ以外なんでもできるIDA 5.0とPro版の体験版の2つ.",
+            "description": "https://www.hex-rays.com/products/ida/",
+            "references": []
+        },
+        {
+            "name": "OllyDbg",
+            "url": "http://www.ollydbg.de/",
+            "description": "動的解析しながらデバッグするツール.Windows用",
+            "references": []
+        },
+        {
+            "name": "Decompilation Online Tool",
+            "url": "https://retdec.com/decompilation-run/",
+            "description": "超強いデコンパイラ. ユーザー登録すると最大10分までかかるバイナリファイルをデコンパイルできる. x86_64には非対応",
+            "lang": ["x86", "ARM", "MIPS", "PICS32", "PowerPC"],
+            "references": []
+        },
+        {
+            "name": "Snowman",
+            "url": "http://derevenets.com/",
+            "description": "デコンパイラ. Windows版しかないしあまり正確ではないがx86_64にも対応している.",
+            "lang": ["x86", "x86_64", "ARM"],
+            "references": []
+        },
+        {
+            "name": "Java Decompiler",
+            "url": "http://jd.benow.ca/",
+            "description": "JavaのクラスファイルをJavaのコードに戻すツール",
+            "lang": ["Java"],
+            "references": []
+        },
+        {
+            "name": "ILSpy",
+            "url": "http://ilspy.net/",
+            "description": ".NETのコードをC#に戻すツール",
+            "lang": [".NET"],
+            "references": []
+        }
+    ],
+    "web":[
+        {
+            "name": "curl",
+            "url": "https://curl.haxx.se/",
+            "description": "コマンド. curl -vとかすると色々見れて捗る",
+            "references": []
+        },
+        {
+            "name": "jq",
+            "url": "https://stedolan.github.io/jq/",
+            "description": "コマンドラインでJSONファイルを整形する. `curl https://api.github.com | jq` で使うといい",
+            "references": []
+        },
+        {
+            "name": "Fiddler",
+            "url": "http://www.telerik.com/fiddler",
+            "description": "Webデバッグプロキシツール. C#製なのでWindows以外だと使いづらい印象がある",
+            "references": []
+        },
+        {
+            "name": "Burp Suite",
+            "url": "https://portswigger.net/burp/",
+            "description": "Webデバッグプロキシツール. Java製. 個人的にはこれが使いやすい",
+            "references": []
+        },
+        {
+            "name": "FireBug",
+            "url": "http://getfirebug.com/",
+            "description": "JavaScriptデバッガー. FireFox only. 難読化されたJSコードもこれに何回か通すとうまいこと動くw",
+            "references": []
+        },
+        {
+            "name": "Nikto2",
+            "url": "https://cirt.net/Nikto2",
+            "description": "Webサイトの脆弱性を診断するオープンソースのツール",
+            "references": [
+                "http://qiita.com/mken/items/2761c8d63a7b8188804f"
+            ]
+        },
+        {
+            "name": "sqlmap",
+            "url": "http://sqlmap.org/",
+            "description": "SQLインジェクションを調査するツール",
+            "references": [
+                "http://qiita.com/shyamahira/items/9f80d16c3436f9dea753"
+            ]
+        }
+    ]
+}
