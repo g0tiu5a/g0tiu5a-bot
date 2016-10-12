@@ -7,6 +7,12 @@
 CTFTIME_API_URL = "https://ctftime.org/api/v1"
 moment = require "moment"
 
+# sleep function from https://jsfiddle.net/axjw668v/8/
+sleep = (delay) ->
+  start = new Date().getTime()
+  while new Date().getTime() < start + delay
+    true
+
 module.exports = (robot) ->
   robot.hear /ctftime event/, (msg) ->
     limit = 3
@@ -23,13 +29,10 @@ module.exports = (robot) ->
         msg.send "Nothing event"
       else
         events = JSON.parse body
-        # sort key is event.start
-        sortEvents = (a, b) ->
-          a.start > b.start
-        events.sort sortEvents
         for event in events
           # Hide offline event
           if event.location == ""
+            sleep(500) # 0.5
             robot.emit 'slack.attachment',
             message: msg.message
             content: [
