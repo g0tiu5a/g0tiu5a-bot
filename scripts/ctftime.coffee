@@ -23,6 +23,10 @@ module.exports = (robot) ->
         msg.send "Nothing event"
       else
         events = JSON.parse body
+        # sort key is event.start
+        sortEvents = (a, b) ->
+          a.start > b.start
+        events.sort sortEvents
         for event in events
           # Hide offline event
           if event.location == ""
