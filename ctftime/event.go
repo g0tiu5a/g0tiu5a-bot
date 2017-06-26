@@ -1,15 +1,15 @@
-package ctftimes
+package ctftime
 
 import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 	"time"
 
-	"github.com/tukejonny/g0tiu5a-bot/common"
+	"github.com/g0tiu5a/g0tiu5a-bot/common"
 )
 
-// event
 type Event struct {
 	Organizers    []Organizer `json:"organizers"`
 	OnSite        bool        `json:"onsite"`
@@ -34,13 +34,11 @@ type Event struct {
 	CtfId         int         `json:"ctf_id"`
 }
 
-//event.organizers
 type Organizer struct {
 	Id   int    `json:"id"`
 	Name string `json:"name"`
 }
 
-//event.duration
 type Duration struct {
 	Hours int `json:"hours"`
 	Days  int `json:"days"`
@@ -48,12 +46,12 @@ type Duration struct {
 
 const (
 	URL_PREFIX = "https://ctftime.org/api/v1"
-	LIMIT      = "3"
+	LIMIT      = 3
 )
 
 func BuildUrl() string {
 	now := time.Now().Unix()
-	url := URL_PREFIX + "/events/?limit=" + LIMIT + "&start=" + fmt.Sprintf("%v", now)
+	url := URL_PREFIX + "/events/?limit=" + strconv.Itoa(LIMIT) + "&start=" + strconv.FormatInt(now, 10)
 	return url
 }
 

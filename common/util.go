@@ -3,20 +3,22 @@ package common
 import (
 	"encoding/json"
 	"io/ioutil"
+	"log"
 	"net/http"
 )
 
-func Decode(r *http.Response, v interface{}) error {
+func Decode(r *http.Response, v interface{}) {
 	defer r.Body.Close()
 	//decode
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		return err
+		log.Fatal("[ReadAll] ")
 	}
 
 	err = json.Unmarshal(body, v)
 	if err != nil {
-		return err
+		//log.Fatal(body)
+		log.Fatal("[Unmarshal] ")
 	}
 
 	//check
@@ -25,9 +27,7 @@ func Decode(r *http.Response, v interface{}) error {
 	}); ok {
 		err = valid.OK()
 		if err != nil {
-			return err
+			log.Fatal("[Validation] ")
 		}
 	}
-
-	return nil
 }
