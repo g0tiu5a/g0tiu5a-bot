@@ -8,7 +8,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/tukejonny/g0tiu5a-bot/common"
+	"github.com/g0tiu5a/g0tiu5a-bot/common"
 )
 
 const (

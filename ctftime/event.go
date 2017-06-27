@@ -51,7 +51,7 @@ const (
 
 func BuildUrl() string {
 	now := time.Now().Unix()
-	url := URL_PREFIX + "/events/?limit=" + strconv.Itoa(LIMIT) + "&start=" + strconv.FormatInt(now, 10)
+	url := URL_PREFIX + "/events/?limit=" + fmt.Sprintf("%d", LIMIT) + "&start=" + strconv.FormatInt(now, 10)
 	return url
 }
 

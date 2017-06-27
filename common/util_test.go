@@ -14,13 +14,14 @@ const (
 )
 
 func TestDecode(t *testing.T) {
-	// Open json_file for testing
 	buf, err := ioutil.ReadFile(TEST_FILE)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	// Create HTTP Response
+	// 200 OK HTTP/1.0
+	// <TEST_FILE json data>
 	response := &http.Response{
 		Status:     "200 OK",
 		StatusCode: 200,
@@ -30,7 +31,6 @@ func TestDecode(t *testing.T) {
 		Body:       ioutil.NopCloser(bytes.NewReader(buf)),
 	}
 
-	// Decode
 	var events []interface{}
 	Decode(response, &events)
 }
