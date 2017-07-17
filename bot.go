@@ -1,25 +1,100 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
-	"regexp"
+	"strings"
 
+	"github.com/g0tiu5a/ctftime"
 	"github.com/nlopes/slack"
 )
 
-func messageEvent(ev *slack.MessageEvent) (string, error) {
-	hearing := ev.Text
-	ret, _ := regexp.MatchString(`^ping`, hearing)
-	if ret {
-		return "ping", nil
-	}
+const (
+	botName = "保登 心愛"
+	botIcon = ":cocoa-1:"
+)
 
-	return "", nil
+type Bot struct {
+	api *slack.Client
+	rtm *slack.RTM
 }
 
-func run(api *slack.Client) int {
-	rtm := api.NewRTM()
+func (bot *Bot) handleResponse(ev *slack.MessageEvent) error {
+	command := strings.Fields(ev.Text)
+
+	if len(command) <= 0 {
+		return nil
+	}
+
+	switch command[0] {
+	case "ping":
+		bot.rtm.SendMessage(bot.rtm.NewOutgoingMessage("pong", ev.Channel))
+		return nil
+
+	case "ctftime":
+		err := bot.ctftime(command, ev.Channel)
+		return err
+	}
+	return nil
+}
+
+func (bot *Bot) ctftime(commands []string, channel string) error {
+	if len(commands) != 2 {
+		return nil
+	}
+
+	var attachments []slack.Attachment
+	const timeLayout = "2006/01/02 15:04:05 UTC"
+
+	switch commands[1] {
+	case "event":
+		events := ctftime.GetAPIData()
+		for _, event := range events {
+			attachment := slack.Attachment{
+				Color:     "#F35A00",
+				Title:     event.Title,
+				TitleLink: event.Url,
+				Fields: []slack.AttachmentField{
+					{
+						Title: "format",
+						Value: event.Format,
+						Short: true,
+					},
+					{
+						Title: "weight",
+						Value: fmt.Sprintf("%f", event.Weight),
+						Short: true,
+					},
+					{
+						Title: "start",
+						Value: event.Start.Format(timeLayout),
+						Short: true,
+					},
+					{
+						Title: "finish",
+						Value: event.Finish.Format(timeLayout),
+						Short: true,
+					},
+				},
+			}
+
+			attachments = append(attachments, attachment)
+		}
+	}
+
+	params := slack.PostMessageParameters{
+		Attachments: attachments,
+		Username:    botName,
+		IconEmoji:   botIcon,
+	}
+
+	_, _, err := bot.api.PostMessage(channel, "", params)
+	return err
+}
+
+func (bot *Bot) run() int {
+	rtm := bot.rtm
 	go rtm.ManageConnection()
 
 	for {
@@ -31,16 +106,15 @@ func run(api *slack.Client) int {
 
 			case *slack.MessageEvent:
 				log.Printf("Message: %v\n", ev)
-				ret, err := messageEvent(ev)
+				err := bot.handleResponse(ev)
 				if err != nil {
-					log.Println(err)
+					log.Fatalf("Error: %v\n", ev)
+					bot.rtm.SendMessage(bot.rtm.NewOutgoingMessage(fmt.Sprintf("Something went wrong... Your input is %s", ev.Text), ev.Channel))
 				}
-				rtm.SendMessage(rtm.NewOutgoingMessage(ret, ev.Channel))
 
 			case *slack.InvalidAuthEvent:
 				log.Print("Invalid credentials")
 				return 1
-
 			}
 		}
 	}
@@ -53,6 +127,8 @@ func main() {
 		os.Exit(1)
 	}
 
-	api := slack.New(token)
-	os.Exit(run(api))
+	bot := Bot{}
+	bot.api = slack.New(token)
+	bot.rtm = bot.api.NewRTM()
+	os.Exit(bot.run())
 }

@@ -1,0 +1,4 @@
+package: github.com/g0tiu5a/g0tiu5a-bot
+import:
+- package: github.com/nlopes/slack
+  version: ^0.1.0
