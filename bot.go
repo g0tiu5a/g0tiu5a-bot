@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/g0tiu5a/g0tiu5a-bot/ctftime"
+	"github.com/g0tiu5a/ctftime"
 	"github.com/nlopes/slack"
 )
 
